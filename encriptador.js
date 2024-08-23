@@ -54,17 +54,27 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
-    botonEncriptar.addEventListener('click', () => {
-        const texto = textArea.value;
-        actualizarParteDerecha(texto, true);
-    });
+    function validarTexto(texto) {
+            const regex = /^[a-z\s]*$/;
+            return regex.test(texto);
+        }
 
-    botonDesencriptar.addEventListener('click', () => {
-        const texto = textArea.value;
-        actualizarParteDerecha(texto, false);
+        botonEncriptar.addEventListener('click', () => {
+            const texto = textArea.value;
+            if (!validarTexto(texto)) {
+                alert("Por favor, ingresa solo letras minúsculas y sin acentos.");
+                return;
+            }
+            actualizarParteDerecha(texto, true);
+        });
+
+        botonDesencriptar.addEventListener('click', () => {
+            const texto = textArea.value;
+            if (!validarTexto(texto)) {
+                alert("Por favor, ingresa solo letras minúsculas y sin acentos.");
+                return;
+            }
+            actualizarParteDerecha(texto, false);
+        });
     });
-    
-   
-  
-});
 
